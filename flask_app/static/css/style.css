@@ -1,0 +1,31 @@
+.container{
+    background-color: lightslategray;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+form{
+    margin: 20px;
+    font-weight: 600;
+    color: aliceblue;
+
+}
+h2, h3, h4, h5{
+    margin: 20px;
+    text-align: left;
+    color: aliceblue;
+}
+.div.col{
+    background-color: lightslategray;
+}
+h1{
+    text-align: center;
+    color: yellow;
+}
+
+textarea{
+    resize: none;
+}
+table tr td{
+    color: aliceblue;
+}

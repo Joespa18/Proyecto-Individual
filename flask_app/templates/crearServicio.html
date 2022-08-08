@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuéntralo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container col-sm-12 d-flex justify-content-center">
+        <h1 class="text-center">Cuéntanos que servicio ofreces</h1>
+    </div>
+    
+    <div class="container col-sm-12 d-flex justify-content-center">
+        <a href="/bienvenido" class="btn btn-secondary col col-1 m-2">Inicio</a>
+        <a href="/perfil" class="btn btn-secondary col col-1 m-2">Mi perfil</a>
+        <a href="/logout" class="btn btn-secondary col col-1 m-2">Logout</a>
+    </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Error</strong>
+                            {% for message in messages %}
+                            <p>{{message}}</p>
+                            {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+    <div class="container col-sm-12 d-flex justify-content-center">
+        <form class="mt-4" action="/crear/servicio" method="post">
+            <div class="row">
+                <label for="categoria" class="col-form-label col-6 mb-4">Categoría:</label>
+                <div class="col-6">
+                <select name="categoria" class="form-control">
+                    <option value="Taxi">Taxi</option>
+                    <option value="Gásfiter">Gásfiter</option>
+                    <option value="Electricista">Electricista</option>
+                    <option value="Maestro">Maestro</option>
+                </select>
+                </div>
+            </div>
+            <div class= "row">
+                <label for="telefono" class="col-form-label col-6 mb-3">Telefono de contacto:</label>
+                <div class="col-6">
+                    <input type="text" class="form-control" name="telefono">
+                </div>
+            </div>
+            <div class=" row">
+                <label for="descripcion" class="col-form-label col-4 ">descripción:</label>
+                <div class="col-7">
+                    <textarea name="descripcion" cols="31" rows="10" placeholder="Favor escribir una breve descripción del servicio. Considerar horario y tarifa."></textarea>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary col col-2 m-2" value="Crear" >
+        </div>
+    
+</body>
+</html>
