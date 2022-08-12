@@ -81,9 +81,9 @@ def perfil():
 def dashboard():
     if 'user_id' not in session:
         return redirect('/')
-    data = {
-        "id": session['user_id']
-    }
+    # data = {
+    #     "id": session['user_id']
+    # }
     uws = Usuario.usuarios_con_servicios()
     return render_template("dashboard.html", uws = uws)
 

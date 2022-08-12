@@ -38,6 +38,51 @@ class Usuario:
             return False
         return cls(results[0])
 
+    @classmethod
+    def categoria_taxi(cls):
+        query = "SELECT usuarios.id, usuarios.nombre, apellido_paterno, apellido_materno, email, contraseña, usuarios.created_at, usuarios.updated_at, servicios.id as servicio_id, telefono, categoria, descripcion, servicios.created_at, servicios.updated_at, usuario_id FROM usuarios JOIN servicios ON usuarios.id = servicios.usuario_id WHERE categoria = 'taxi';"
+        results = connectToMySQL(cls.db).query_db(query)
+        foundings= []
+        for row in results:
+            foundings.append( cls(row) )
+        return results
+
+    @classmethod
+    def categoria_taxi(cls):
+        query = "SELECT usuarios.id, usuarios.nombre, apellido_paterno, apellido_materno, email, contraseña, usuarios.created_at, usuarios.updated_at, servicios.id as servicio_id, telefono, categoria, descripcion, servicios.created_at, servicios.updated_at, usuario_id FROM usuarios JOIN servicios ON usuarios.id = servicios.usuario_id WHERE categoria = 'taxi';"
+        results = connectToMySQL(cls.db).query_db(query)
+        foundings= []
+        for row in results:
+            foundings.append( cls(row) )
+        return results
+
+    @classmethod
+    def categoria_gasfiter(cls):
+        query = "SELECT usuarios.id, usuarios.nombre, apellido_paterno, apellido_materno, email, contraseña, usuarios.created_at, usuarios.updated_at, servicios.id as servicio_id, telefono, categoria, descripcion, servicios.created_at, servicios.updated_at, usuario_id FROM usuarios JOIN servicios ON usuarios.id = servicios.usuario_id WHERE categoria = 'gasfiter';"
+        results = connectToMySQL(cls.db).query_db(query)
+        foundings= []
+        for row in results:
+            foundings.append( cls(row) )
+        return results
+
+    @classmethod
+    def categoria_electricista(cls):
+        query = "SELECT usuarios.id, usuarios.nombre, apellido_paterno, apellido_materno, email, contraseña, usuarios.created_at, usuarios.updated_at, servicios.id as servicio_id, telefono, categoria, descripcion, servicios.created_at, servicios.updated_at, usuario_id FROM usuarios JOIN servicios ON usuarios.id = servicios.usuario_id WHERE categoria = 'electricista';"
+        results = connectToMySQL(cls.db).query_db(query)
+        foundings= []
+        for row in results:
+            foundings.append( cls(row) )
+        return results
+
+    @classmethod
+    def categoria_maestro(cls):
+        query = "SELECT usuarios.id, usuarios.nombre, apellido_paterno, apellido_materno, email, contraseña, usuarios.created_at, usuarios.updated_at, servicios.id as servicio_id, telefono, categoria, descripcion, servicios.created_at, servicios.updated_at, usuario_id FROM usuarios JOIN servicios ON usuarios.id = servicios.usuario_id WHERE categoria = 'maestro';"
+        results = connectToMySQL(cls.db).query_db(query)
+        foundings= []
+        for row in results:
+            foundings.append( cls(row) )
+        return results
+
     # @classmethod
     # def get_all(cls):
     #     query = "SELECT * FROM users;"

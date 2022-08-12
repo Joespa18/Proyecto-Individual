@@ -27,3 +27,31 @@ def nuevo_servicio():
     }
     Servicio.save(data)
     return redirect('/dashboard')
+
+@app.route("/dashboard/taxi")
+def dashboard_taxi():
+    if 'user_id' not in session:
+        return redirect('/')
+    uws = Usuario.categoria_taxi()
+    return render_template("dashboard.html", uws = uws)
+
+@app.route("/dashboard/gasfiter")
+def dashboard_gasfiter():
+    if 'user_id' not in session:
+        return redirect('/')
+    uws = Usuario.categoria_gasfiter()
+    return render_template("dashboard.html", uws = uws)
+
+@app.route("/dashboard/electricista")
+def dashboard_electricista():
+    if 'user_id' not in session:
+        return redirect('/')
+    uws = Usuario.categoria_electricista()
+    return render_template("dashboard.html", uws = uws)
+
+@app.route("/dashboard/maestro")
+def dashboard_maestro():
+    if 'user_id' not in session:
+        return redirect('/')
+    uws = Usuario.categoria_maestro()
+    return render_template("dashboard.html", uws = uws)
