@@ -17,94 +17,84 @@ class Usuario:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
+        self.servicios = []             #Aquí irán los serivicios de cada usuario, si es que tiene
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO usuarios (nombre, apellido_paterno,apellido_materno, email, contraseña) VALUES (%(nombre)s,%(apellido_paterno)s,%(apellido_materno)s,%(email)s,%(contraseña)s);"
+        query = """INSERT INTO usuarios (nombre, apellido_paterno,apellido_materno, email, contraseña) 
+        VALUES (%(nombre)s,%(apellido_paterno)s,%(apellido_materno)s,%(email)s,%(contraseña)s);"""
         return connectToMySQL (cls.db).query_db(query, data)
 
     @classmethod
     def get_by_email(cls,data):
-        query = "SELECT * FROM usuarios WHERE email = %(email)s;"
+        query = """SELECT * FROM usuarios 
+        LEFT JOIN servicios ON usuarios.id = servicios.usuario_id
+        WHERE email = %(email)s;"""
         results = connectToMySQL(cls.db).query_db(query,data)
         if len(results) < 1:
             return False
-        return cls(results[0])
+        user = cls(results[0])
+        for row in results:     
+            if row['servicios.id']:
+                data2 = {
+                'id': row['servicios.id'],
+                'telefono': row['telefono'],
+                'categoria': row['categoria'],
+                'descripcion': row['descripcion'],
+                'updated_at': row['updated_at'],
+                'created_at': row['created_at'],
+                }
+                user.servicios.append(servicio.Servicio(data2))
+        return user
 
     @classmethod
     def get_by_id(cls,data):
-        query = "SELECT * FROM usuarios WHERE id = %(id)s;"
+        query = """SELECT * FROM usuarios 
+        LEFT JOIN servicios ON usuarios.id = servicios.usuario_id
+        WHERE usuarios.id = %(id)s;"""
         results = connectToMySQL(cls.db).query_db(query,data)
         if len(results) < 1:
             return False
-        return cls(results[0])
-
-    @classmethod
-    def categoria_taxi(cls):
-        query = "SELECT usuarios.id, usuarios.nombre, apellido_paterno, apellido_materno, email, contraseña, usuarios.created_at, usuarios.updated_at, servicios.id as servicio_id, telefono, categoria, descripcion, servicios.created_at, servicios.updated_at, usuario_id FROM usuarios JOIN servicios ON usuarios.id = servicios.usuario_id WHERE categoria = 'taxi';"
-        results = connectToMySQL(cls.db).query_db(query)
-        foundings= []
-        for row in results:
-            foundings.append( cls(row) )
-        return results
-
-    @classmethod
-    def categoria_taxi(cls):
-        query = "SELECT usuarios.id, usuarios.nombre, apellido_paterno, apellido_materno, email, contraseña, usuarios.created_at, usuarios.updated_at, servicios.id as servicio_id, telefono, categoria, descripcion, servicios.created_at, servicios.updated_at, usuario_id FROM usuarios JOIN servicios ON usuarios.id = servicios.usuario_id WHERE categoria = 'taxi';"
-        results = connectToMySQL(cls.db).query_db(query)
-        foundings= []
-        for row in results:
-            foundings.append( cls(row) )
-        return results
-
-    @classmethod
-    def categoria_gasfiter(cls):
-        query = "SELECT usuarios.id, usuarios.nombre, apellido_paterno, apellido_materno, email, contraseña, usuarios.created_at, usuarios.updated_at, servicios.id as servicio_id, telefono, categoria, descripcion, servicios.created_at, servicios.updated_at, usuario_id FROM usuarios JOIN servicios ON usuarios.id = servicios.usuario_id WHERE categoria = 'gasfiter';"
-        results = connectToMySQL(cls.db).query_db(query)
-        foundings= []
-        for row in results:
-            foundings.append( cls(row) )
-        return results
-
-    @classmethod
-    def categoria_electricista(cls):
-        query = "SELECT usuarios.id, usuarios.nombre, apellido_paterno, apellido_materno, email, contraseña, usuarios.created_at, usuarios.updated_at, servicios.id as servicio_id, telefono, categoria, descripcion, servicios.created_at, servicios.updated_at, usuario_id FROM usuarios JOIN servicios ON usuarios.id = servicios.usuario_id WHERE categoria = 'electricista';"
-        results = connectToMySQL(cls.db).query_db(query)
-        foundings= []
-        for row in results:
-            foundings.append( cls(row) )
-        return results
-
-    @classmethod
-    def categoria_maestro(cls):
-        query = "SELECT usuarios.id, usuarios.nombre, apellido_paterno, apellido_materno, email, contraseña, usuarios.created_at, usuarios.updated_at, servicios.id as servicio_id, telefono, categoria, descripcion, servicios.created_at, servicios.updated_at, usuario_id FROM usuarios JOIN servicios ON usuarios.id = servicios.usuario_id WHERE categoria = 'maestro';"
-        results = connectToMySQL(cls.db).query_db(query)
-        foundings= []
-        for row in results:
-            foundings.append( cls(row) )
-        return results
-
-    # @classmethod
-    # def get_all(cls):
-    #     query = "SELECT * FROM users;"
-    #     results = connectToMySQL(cls.db).query_db(query)
-    #     users = []
-    #     for row in results:
-    #         users.append( cls(row) )
-    #     return users 
+        user = cls(results[0])
+        for row in results:     
+            if row['servicios.id']:
+                data2 = {
+                'id': row['servicios.id'],
+                'telefono': row['telefono'],
+                'categoria': row['categoria'],
+                'descripcion': row['descripcion'],
+                'updated_at': row['updated_at'],
+                'created_at': row['created_at'],
+                }
+                user.servicios.append(servicio.Servicio(data2))
+        return user
 
     @classmethod
     def usuarios_con_servicios(cls):
-        query = "SELECT usuarios.id, usuarios.nombre, apellido_paterno, apellido_materno, email, contraseña, usuarios.created_at, usuarios.updated_at, servicios.id as servicio_id, telefono, categoria, descripcion, servicios.created_at, servicios.updated_at, usuario_id FROM usuarios JOIN servicios ON usuarios.id = servicios.usuario_id;"
+        query = """SELECT * FROM usuarios;"""
         results = connectToMySQL(cls.db).query_db(query)
-        foundings= []
+        users= []
         for row in results:
-            foundings.append( cls(row) )
-        return results
+            users.append( cls(row) )    #Para obtener los usuarios con servicios primero pido todos los usuarios a la db y los convierto en instancias de clase Usuario
+        for user in users:              #Luego, por cada usuario, hago una consulta a la db para sacar los servicios de cada usuario con un for loop
+            query = f"SELECT * FROM usuarios LEFT JOIN servicios ON usuarios.id = servicios.usuario_id WHERE usuarios.id = {user.id};"
+            results = connectToMySQL(cls.db).query_db(query) 
+            if results:                 #Con este condicional me aseguro de que, si un usuario registrado no tiene servicios, no se ejecute este pedazo de código y no de error
+                for row in results:     #Con este for loop, si un usuario da más de un servicio (Puede que sea gasfitero y electricista o más cosas), se asegura de que se pasen todos sus servicios como instancias de clase Servicio al array "self.servicios = []" de cada usuario.
+                    data = {
+                    'id': row['servicios.id'],
+                    'telefono': row['telefono'],
+                    'categoria': row['categoria'],
+                    'descripcion': row['descripcion'],
+                    'updated_at': row['updated_at'],
+                    'created_at': row['created_at'],
+                    }
+                    user.servicios.append(servicio.Servicio(data))        #Al final, parseo los datos que son del servicio como variable data a crear instancias de servicios y añadirlas a "self.servicios = []"
+        return users                    #Esto debería retornar una lista de todos los usuarios como objetos, cada uno con una lista de servicios, estos también como objetos.
 
     @staticmethod
     def validate_user(usuario):
         is_valid = True
-        query = "SELECT * FROM usuarios WHERE email = %(email)s;"
+        query = """SELECT * FROM usuarios WHERE email = %(email)s;"""
         results = connectToMySQL(Usuario.db).query_db(query,usuario)
         if len(usuario['nombre']) < 2:
             is_valid = False
@@ -128,3 +118,4 @@ class Usuario:
             flash("Email already taken.","register")
             is_valid=False
         return is_valid
+

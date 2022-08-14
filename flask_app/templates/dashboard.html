@@ -15,7 +15,6 @@
     <div class="container col-sm-12 d-flex justify-content-center">
         <a href="/bienvenido" class="btn btn-secondary col col-1 m-2">Inicio</a>
         <a href="/perfil" class="btn btn-secondary col col-1 m-2">Mi perfil</a>
-        <a href="/servicios" class="btn btn-secondary col col-1 m-2">Volver</a>
         <a href="/logout" class="btn btn-secondary col col-1 m-2">Logout</a>
     </div>
 
@@ -31,14 +30,16 @@
             </thead>
             <tbody>
 
-                {% for s in uws %}
+            {% for s in uws %}
+                {% for servicio in s.servicios %}
                 <tr>
                     <td>{{s.nombre}} {{s.apellido_paterno}}</td>
-                    <td>{{s.telefono}}</td>
-                    <td>{{s.categoria}}</td>
-                    <td>{{s.descripcion}}</td>
+                    <td>{{servicio.telefono}}</td>
+                    <td>{{servicio.categoria}}</td>
+                    <td>{{servicio.descripcion}}</td>
                 </tr>
                 {% endfor %}
+            {% endfor %}
                 
             </tbody>
         </table>

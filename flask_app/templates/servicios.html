@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,11 +17,13 @@
         <a href="/perfil" class="btn btn-secondary col col-1 m-2">Mi perfil</a>
         <a href="/logout" class="btn btn-secondary col col-1 m-2">Logout</a>
         </div>
-    <div class="container align-items-center flex-column">
-            <a class="btn btn-primary col col-2 m-2 p-2" href="/dashboard/taxi">Taxi</a>
-            <a class="btn btn-primary col col-2 m-2 p-2" href="/dashboard/gasfiter">Gásfiter</a>
-            <a class="btn btn-primary col col-2 m-2 p-2" href="/dashboard/electricista">Electricista</a>
-            <a class="btn btn-primary col col-2 m-2 p-2" href="/dashboard/maestro">Maestro</a>
+    <div class="container justify-content-center">
+        <form action="/dashboard">
+            <input type="submit" class="btn btn-primary col col-12 m-2 p-2" value="Taxi">
+            <input type="submit" class="btn btn-primary col col-12 m-2 p-2" value="Gásfiter">
+            <input type="submit" class="btn btn-primary col col-12 m-2 p-2" value="Electricista">
+            <input type="submit" class="btn btn-primary col col-12 m-2 p-2" value="Maestro">
+        </form>
     </div>
 </body>
 </html>

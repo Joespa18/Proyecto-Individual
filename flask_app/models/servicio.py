@@ -13,7 +13,8 @@ class Servicio:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO servicios (categoria, telefono, descripcion, usuario_id) VALUES (%(categoria)s, %(telefono)s, %(descripcion)s, %(usuario_id)s);"
+        query = """INSERT INTO servicios (categoria, telefono, descripcion, usuario_id) 
+        VALUES (%(categoria)s, %(telefono)s, %(descripcion)s, %(usuario_id)s);"""
         return connectToMySQL(cls.db).query_db(query, data)
 
     # @classmethod
