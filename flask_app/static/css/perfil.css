@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    /* border: 1px dashed orangered; */
+}
+
+
+/* CABECERA */
+
+header{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px 30px;
+    justify-content: space-between;
+}
+
+#logobox{
+    display: flex;
+    align-items: center;
+}
+
+#logobox > h1{
+    color: #212328;
+    font-family: 'Oswald', sans-serif;
+}
+
+#logobox > img{
+    height: 30px;
+}
+
+#linksbox > a{
+    margin-left: 15px;
+    color: #212328;
+}
+
+/* CUERPO */
+
+#bigcolumn{
+    background-color:#212328;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+
+h1,h2,h3,h4, h5,a, form, p, input[type=submit] {
+    font-family: 'Oswald', sans-serif;
+    /* text-align: center; */
+}
+
+#titlebox{
+    display: flex;
+    align-items:center;
+    margin-bottom: 10px;
+}
+
+#titlebox > a{
+    color:#212328;
+    margin-left: 15px;
+    font-size: 15pt;
+    background-color: #F7A821;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.titulo{
+    color: WHITE;
+    margin-bottom: 10px;
+}
+
+#BOXES-WRAP{
+    display: flex;
+    justify-content: space-between;
+}
+
+.servicebox{
+    background-color: #F7A821;
+    border-radius: 10px;
+    padding: 20px;
+    width: 30%;
+
+}
+
+.servicebox > h2,a{
+    color:#212328;
+    font-weight: lighter;
+}
+
+.commentsbox{
+    padding: 20px;
+    width: 30%;
+}
+.commentsbox>h2,h3{
+    color: white;
+    font-weight: lighter;
+}
+
+.formbox{
+    width: 30%;
+}
+
+label{
+    color: white;
+}
+
+select{
+    width: 25%;
+}
+
+input[type="submit"]{
+    width: 25%;
+}

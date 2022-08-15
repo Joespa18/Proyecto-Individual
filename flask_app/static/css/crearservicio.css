@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    /* border: 1px dashed orangered; */
+}
+
+
+/* CABECERA */
+
+header{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px 30px;
+    justify-content: space-between;
+}
+
+#logobox{
+    display: flex;
+    align-items: center;
+}
+
+#logobox > h1{
+    color: #212328;
+    font-family: 'Oswald', sans-serif;
+}
+
+#logobox > img{
+    height: 30px;
+}
+
+#linksbox > a{
+    margin-left: 15px;
+    color: #212328;
+}
+
+/* CUERPO */
+
+#bigcolumn{
+    background-color:#F7A821;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+
+h1,h2,h3,h4, h5,a, form, p, input[type=submit] {
+    font-family: 'Oswald', sans-serif;
+    /* text-align: center; */
+}
+
+.titulo{
+    color: #212328;
+    margin-bottom: 10px;
+}
+
+
+.servicebox{
+    background-color: #212328;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    margin: 0PX 10PX;
+}
+
+label{
+    color: white;
+    font-size: 20px;
+}
+
+input[type=text], input[type=email], input[type=password], select{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
+input[type=submit]{
+    color: white;
+    font-size: 15px;
+    background-color: #F7A821;
+    border: none;
+    height: 30px;
+    width: 25%;
+}
+
+
