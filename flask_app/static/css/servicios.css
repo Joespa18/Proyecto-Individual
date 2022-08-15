@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    /* border: 1px dashed orangered; */
+}
+
+
+/* CABECERA */
+
+header{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px 30px;
+    justify-content: space-between;
+}
+
+#logobox{
+    display: flex;
+    align-items: center;
+}
+
+#logobox > h1{
+    color: #212328;
+    font-family: 'Oswald', sans-serif;
+}
+
+#logobox > img{
+    height: 30px;
+}
+
+#linksbox > a{
+    margin-left: 15px;
+    color: #212328;
+}
+
+/* CUERPO */
+
+#bigcolumn{
+    background-color:#F3F4F7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+
+h1,h2,h3,h4, h5,a, form, p, input[type=submit] {
+    font-family: 'Oswald', sans-serif;
+    /* text-align: center; */
+}
+
+.titulo{
+    color: #212328;
+    margin-bottom: 10px;
+}
+
+#SERVICES-WRAP{
+    display: flex;
+}
+
+.servicebox{
+    background-color: #212328;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    margin: 0PX 10PX;
+    width: 150PX;
+}
+
+.servicebox > a{
+    color: white;
+    text-decoration: none;
+    font-size: 35px;
+    margin-top: 20px;
+}
+
+.servicebox > img{
+    height: 100px;
+}

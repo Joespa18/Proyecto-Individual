@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    /* border: 1px dashed orangered; */
+}
+
+
+/* CABECERA */
+
+header{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px 30px;
+    justify-content: space-between;
+}
+
+#logobox{
+    display: flex;
+    align-items: center;
+}
+
+#logobox > h1{
+    color: #212328;
+    font-family: 'Oswald', sans-serif;
+}
+
+#logobox > img{
+    height: 30px;
+}
+
+/* CUERPO */
+
+#bigcolumn{
+    background-color:#F3F4F7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+
+h1,h2,h3,h4, h5,a, form, p, input[type=submit] {
+    font-family: 'Oswald', sans-serif;
+    /* text-align: center; */
+}
+
+
+
+.titulo{
+    color: #212328;
+    margin-bottom: 10px;
+}
+
+
+
+input[type=submit]{
+    color:white;
+    background-color: #212328;
+    border: none;
+    margin-bottom: 10PX;
+    height: 100px;
+    width: 500PX;
+    font-size: 40px;
+    border-radius: 10PX;
+}
+
+a{
+    margin-left: 15px;
+    color: #212328;
+}
+
+
