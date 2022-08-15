@@ -5,19 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENCUENTRALO.CL</title>
-    <link rel= "stylesheet" type= "text/css" href= "/css/bienvenido.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bienvenido.css') }}">
 
 </head>
 <body>
     <header>
         <div id="logobox">
-            <img src="/images/lupa.png" alt="">
+            <img src="{{ url_for('static', filename='images/lupa.png') }}" alt="">
             <h1>ENCUENTRALO.CL |</h1>
-            <h2>BIENVENIDO {{USUARIO.NOMBRE}}</h2>
+            <h2>BIENVENIDO USUARIO.NOMBRE</h2>
         </div>
         <div id="linksbox">
-            <a href="#">MI PERFIL</a>
-            <a style="color:#F7A821;" href="#">LOG OUT</a>
+            <a href="/perfil">MI PERFIL</a>
+            <a style="color:#F7A821;" href="/logout">LOG OUT</a>
         </div>
     </header>
 
@@ -26,7 +26,7 @@
 
         <h1 class="titulo">SELECCIONA UNA OPCIÓN:</h1>
 
-        <form action="/dashboard">
+        <form action="/servicios">
             <input type="submit" value="BUSCO UN SERVICIO">
         </form>
 

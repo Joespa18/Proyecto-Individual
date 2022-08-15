@@ -75,7 +75,7 @@ def perfil():
     }
     usuario = Usuario.get_by_id(data)
     uws = Usuario.usuarios_con_servicios()
-    return render_template("perfil.html", usuario = usuario, uws = uws)
+    return render_template("miperfil.html", usuario = usuario, uws = uws)
 
 @app.route("/dashboard")
 def dashboard():

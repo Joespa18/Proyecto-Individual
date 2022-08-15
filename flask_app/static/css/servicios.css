@@ -83,3 +83,6 @@ h1,h2,h3,h4, h5,a, form, p, input[type=submit] {
 .servicebox > img{
     height: 100px;
 }
+a{
+    text-align: center;
+}

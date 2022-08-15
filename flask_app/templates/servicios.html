@@ -5,20 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENCUENTRALO.CL</title>
-    <link rel= "stylesheet" type= "text/css" href= "/css/servicios.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/servicios.css') }}">
 
 </head>
 <body>
     <header>
         <div id="logobox">
-            <img src="/images/lupa.png" alt="">
+            <img src="{{ url_for('static', filename='images/lupa.png') }}" alt="">
             <h1>ENCUENTRALO.CL |</h1>
-            <h2>BIENVENIDO {{USUARIO.NOMBRE}}</h2>
+            <h2>BIENVENIDO USUARIO.NOMBRE </h2>
         </div>
         <div id="linksbox">
-            <a href="#">MI PERFIL</a>
-            <a href="">INICIO</a>
-            <a style="color:#F7A821;" href="">LOG OUT</a>
+            <a href="/perfil">MI PERFIL</a>
+            <a href="/bienvenido">INICIO</a>
+            <a style="color:#F7A821;" href="/logout">LOG OUT</a>
         </div>
     </header>
 
@@ -29,23 +29,19 @@
 
         <div id="SERVICES-WRAP">
             <div class="servicebox">
-                <img src="/images/albañil.png" alt="">
-                <a href="#">ALBAÑIL</a>
+                <a href="/dashboard">ALBAÑIL <img src="{{ url_for('static', filename='images/albañil.png') }}" alt=""></a>
             </div>
 
             <div class="servicebox">
-                <img src="/images/electricista.png" alt="">
-                <a href="#">ELECTRICISTA</a>
+                <a href="/dashboard">ELECTRICISTA <img src="{{ url_for('static', filename='images/electricista.png') }}" alt=""></a>
             </div>
 
             <div class="servicebox">
-                <img src="/images/GASFITER.png" alt="">
-                <a href="#">GASFITER</a>
+                <a href="/dashboard">GASFITER <img src="{{ url_for('static', filename='images/GASFITER.png') }}" alt=""></a>
             </div>
 
             <div class="servicebox">
-                <img src="/images/TAXI.png" alt="">
-                <a href="#">TAXI</a>
+                <a href="/dashboard" >TAXI <img src="{{ url_for('static', filename='images/taxi.png') }}" alt=""></a>
             </div>        
         
         </div>
