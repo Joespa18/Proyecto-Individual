@@ -3,6 +3,7 @@ from flask import flash
 import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 from flask_app.models import servicio
+from flask_app.models import evaluacion
 
 class Usuario:
     db = 'encuentralo'
@@ -18,6 +19,7 @@ class Usuario:
         self.updated_at = data['updated_at']
 
         self.servicios = []             #Aquí irán los serivicios de cada usuario, si es que tiene
+        self.evaluaciones = []          #Aquí van las evaluaciones que le hicieron a este usuario
     @classmethod
     def save(cls, data):
         query = """INSERT INTO usuarios (nombre, apellido_paterno,apellido_materno, email, contraseña) 
@@ -55,6 +57,10 @@ class Usuario:
         if len(results) < 1:
             return False
         user = cls(results[0])
+        data = {
+            'user_id': user.id
+        }
+        user.evaluaciones = evaluacion.Evaluacion.get_all_of_one_by_user_id(data)
         for row in results:     
             if row['servicios.id']:
                 data2 = {
@@ -66,6 +72,11 @@ class Usuario:
                 'created_at': row['created_at'],
                 }
                 user.servicios.append(servicio.Servicio(data2))
+        temp = 0
+        if user.evaluaciones:
+            for ev in user.evaluaciones:
+                temp = temp + ev.evaluacion
+            user.promediodeeval = round(temp/len(user.evaluaciones), 1)
         return user
 
     @classmethod

@@ -58,6 +58,31 @@ AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
+-- -----------------------------------------------------
+-- Table `encuentralo`.`evaluaciones`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `encuentralo`.`evaluaciones` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `comentario` varchar(255) DEFAULT NULL,
+  `evaluacion` smallint DEFAULT NULL,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `sender_id` int NOT NULL,
+  `receiver_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_evaluacion_usuarios1_idx` (`sender_id`),
+  KEY `fk_evaluacion_usuarios2_idx` (`receiver_id`),
+  CONSTRAINT `fk_evaluacion_usuarios1` 
+    FOREIGN KEY (`sender_id`) 
+    REFERENCES `usuarios` (`id`),
+  CONSTRAINT `fk_evaluacion_usuarios2` 
+    FOREIGN KEY (`receiver_id`) 
+    REFERENCES `usuarios` (`id`)) 
+ENGINE=InnoDB 
+AUTO_INCREMENT=7 
+DEFAULT CHARSET=utf8mb4 
+COLLATE=utf8mb4_0900_ai_ci;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

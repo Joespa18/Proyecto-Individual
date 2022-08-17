@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_app import app
 from flask_app.models.usuario import Usuario
 from flask_app.models.servicio import Servicio
+from flask_app.models.evaluacion import Evaluacion
 
 
 bcrypt = Bcrypt(app)
@@ -89,7 +90,10 @@ def perfil_of_x(user_id):
     }
     usuario = Usuario.get_by_id(data)
     udp = Usuario.get_by_id(data2)
-    return render_template("otroperfil.html", usuario = usuario, udp = udp)
+    evaluations_senders_ids = []
+    for ev in udp.evaluaciones:
+        evaluations_senders_ids.append(ev.sender.id)
+    return render_template("otroperfil.html", usuario = usuario, udp = udp, esi = evaluations_senders_ids)
 
 @app.route('/logout')
 def logout():

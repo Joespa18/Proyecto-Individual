@@ -18,7 +18,7 @@
         <div id="linksbox">
             <a href="/perfil">MI PERFIL</a>
             <a href="/bienvenido">INICIO</a>
-            <a style="color:#F7A821;" href="logout">LOG OUT</a>
+            <a style="color:#F7A821;" href="/logout">LOG OUT</a>
         </div>
     </header>
 
@@ -36,7 +36,11 @@
             <tbody>
                 {% for s in servicios %}
                 <tr>
+                    {% if session.user_id == s.user.id %}
+                    <td><a href="/perfil">{{s.user.nombre}} {{s.user.apellido_paterno}}</a></td>
+                    {% else %}
                     <td><a href="/perfil/{{s.user.id}}">{{s.user.nombre}} {{s.user.apellido_paterno}}</a></td>
+                    {% endif%}
                     <td>{{s.telefono}}</td>
                     <td>{{s.descripcion}}</td>
                 </tr>
