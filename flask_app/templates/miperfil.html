@@ -51,7 +51,7 @@
                 <h2>COMENTARIOS</h2>
                 {% for evaluacion in usuario.evaluaciones%}
                 {% if evaluacion.comentario %}
-                <h3>{{evaluacion.sender.name|upper}}</h3>
+                <h3>{{evaluacion.sender.nombre|upper}}</h3>
                 <h3>{{evaluacion.comentario}}</h3><br>
                 {% endif %}
                 {% endfor %}
