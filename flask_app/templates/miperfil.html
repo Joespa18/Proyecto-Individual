@@ -35,15 +35,18 @@
 
 
         <div id="BOXES-WRAP">
-            {% for service in usuario.servicios %}
-            <div class="servicebox">
-                <a href="/edit/{{service.id}}" style="font-size:12px;">EDITAR</a>
-                <a href="/destroy/{{service.id}}" style="font-size:12px;">ELIMINAR</a>
-                <h2>{{service.categoria|upper}}</h2>
-                <h2>{{service.telefono}} <a href="https://wa.me/{{service.telefono}}" target="_blank"><img src="{{ url_for('static', filename='images/wsp.png') }}" style="height:30px;"></a></h2>
-                <h2>{{service.descripcion}}</h2>
+            <div id="serviceboxwrap">
+
+                {% for service in usuario.servicios %}
+                <div class="servicebox">
+                    <a href="/edit/{{service.id}}" style="font-size:12px;">EDITAR</a>
+                    <a href="/destroy/{{service.id}}" style="font-size:12px;">ELIMINAR</a>
+                    <h2>{{service.categoria|upper}}</h2>
+                    <h2>{{service.telefono}} <a href="https://wa.me/{{service.telefono}}" target="_blank"><img src="{{ url_for('static', filename='images/wsp.png') }}" style="height:30px;"></a></h2>
+                    <h2>{{service.descripcion}}</h2>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
             <div class="commentsbox">
                 <h2>COMENTARIOS</h2>
                 {% for evaluacion in usuario.evaluaciones%}
