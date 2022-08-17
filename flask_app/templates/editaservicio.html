@@ -13,7 +13,7 @@
         <div id="logobox">
             <img src="{{ url_for('static', filename='images/lupa.png') }}" alt="">
             <h1>ENCUENTRALO.CL |</h1>
-            <h2>BIENVENIDO{{usuario.nombre|upper}}</h2>
+            <!-- <h2>BIENVENIDO usuario.nombre|upper </h2> -->
         </div>
         <div id="linksbox">
             <a href="/perfil">MI PERFIL</a>
@@ -28,34 +28,30 @@
         <h1 class="titulo">EDITA TU SERVICIO:</h1>
 
         <div class="servicebox">
-            <form  action="" method="post">
+            <form  action="/update" method="post">
                 <div class="row">
+                    <input type="hidden" name="id" value={{servicio.id}}>
                     <label for="categoria" >Categoría:</label><br>
-                    <select name="categoria" >
-                        <option value="Taxi">Taxi</option>
-                        <option value="Gásfiter">Gásfiter</option>
-                        <option value="Electricista">Electricista</option>
-                        <option value="Albañil">Albañil</option>
-                    </select>
+                    <input type="text" name="categoria" value="{{servicio.categoria}}" disabled>
                 </div>
 
                 <div class= "row">
                     <label for="telefono" >Telefono de contacto:</label>
                     <div>
-                        <input type="text"  name="telefono">
+                        <input type="text"  name="telefono" value="{{servicio.telefono}}">
                     </div>
                 </div>
                 
                 <div >
                     <label for="descripcion">Descripción:</label>
                     <div >
-                        <textarea name="descripcion" cols="31" rows="10" placeholder="Favor escribir una breve descripción del servicio. Considerar horario y tarifa."></textarea>
+                        <input type="text" value="{{servicio.descripcion}}" size="100px" name="descripcion">
                     </div>
                 </div>
                 <input type="submit"  value="Editar" >
             </div>
         </div>
-        
+        </form>
 
     </div>
 

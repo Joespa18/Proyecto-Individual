@@ -29,7 +29,6 @@
                 <tr>
                     <th>NOMBRE</th>
                     <th>TELÉFONO</th>
-                    <th>EVALUACIÓN</th>
                     <th>DESCRIPCIÓN</th>
                 </tr>
             </thead>
@@ -39,7 +38,6 @@
                 <tr>
                     <td><a href="/perfil/{{s.user.id}}">{{s.user.nombre}} {{s.user.apellido_paterno}}</a></td>
                     <td>{{s.telefono}}</td>
-                    <td>Valoración</td>
                     <td>{{s.descripcion}}</td>
                 </tr>
                 {% endfor %}

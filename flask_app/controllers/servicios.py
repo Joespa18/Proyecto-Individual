@@ -42,3 +42,30 @@ def nuevo_servicio():
     }
     Servicio.save(data)
     return redirect(f"/dashboard/{request.form['categoria']}")
+
+@app.route('/destroy/<int:id>')
+def destroy(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data={
+        'id':id
+    }
+    Servicio.destroy(data)
+    return redirect('/perfil')
+
+@app.route('/edit/<int:id>')
+def edit(id):
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data ={
+        "id":id
+    }
+    servicio = Servicio.get_one(data)
+    return render_template("editaservicio.html", servicio = servicio)
+
+@app.route('/update', methods=['POST'])
+def update():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    Servicio.update(request.form)
+    return redirect('/perfil')

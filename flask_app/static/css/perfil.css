@@ -76,6 +76,8 @@ h1,h2,h3,h4, h5,a, form, p, input[type=submit] {
 #BOXES-WRAP{
     display: flex;
     justify-content: space-between;
+    gap: 10px; 
+    /* Se agrega el gap para separar entre servicios */
 }
 
 .servicebox{
