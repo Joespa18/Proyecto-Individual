@@ -13,7 +13,7 @@
         <div id="logobox">
             <img src="{{ url_for('static', filename='images/lupa.png') }}" alt="">
             <h1>ENCUENTRALO.CL |</h1>
-            <h2>BIENVENIDO USUARIO.NOMBRE</h2>
+            <h2>BIENVENIDO {{usuario.nombre|upper}}</h2>
         </div>
         <div id="linksbox">
             <a href="/perfil">MI PERFIL</a>
@@ -32,10 +32,10 @@
                 <div class="row">
                     <label for="categoria" >Categoría:</label><br>
                     <select name="categoria" >
-                        <option value="Taxi">Taxi</option>
-                        <option value="Gásfiter">Gásfiter</option>
-                        <option value="Electricista">Electricista</option>
-                        <option value="Albañil">Albañil</option>
+                        <option value="taxi">Taxi</option>
+                        <option value="gasfiter">Gásfiter</option>
+                        <option value="electricista">Electricista</option>
+                        <option value="albañil">Albañil</option>
                     </select>
                 </div>
 
@@ -52,12 +52,9 @@
                         <textarea name="descripcion" cols="31" rows="10" placeholder="Favor escribir una breve descripción del servicio. Considerar horario y tarifa."></textarea>
                     </div>
                 </div>
-                <input type="submit"  value="Crear" >
+                <input type="submit"  value="Crear">
             </div>
         </div>
-        
-
     </div>
-
 </body>
 </html>

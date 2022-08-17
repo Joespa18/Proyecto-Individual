@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENCUENTRALO.CL</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/perfil.css') }}">
 
 </head>
@@ -13,7 +14,7 @@
         <div id="logobox">
             <img src="{{ url_for('static', filename='images/lupa.png') }}" alt="">
             <h1>ENCUENTRALO.CL |</h1>
-            <h2>BIENVENIDO USUARIO.NOMBRE</h2>
+            <h2>BIENVENIDO {{usuario.nombre|upper}}</h2>
         </div>
         <div id="linksbox">
             <a href="/perfil">MI PERFIL</a>
@@ -25,29 +26,29 @@
     <div id="bigcolumn">
         
         <div id="titlebox">
-            <h1 class="titulo">JULIAN ABARZUA | 4,8 |</h1>
+            <h1 class="titulo">{{usuario.nombre|upper}} {{usuario.apellido_paterno|upper}} | 4,8 |</h1>
             <a href="">Mis Mensaje</a>
         </div>
 
 
         <div id="BOXES-WRAP">
+            {% for service in usuario.servicios %}
             <div class="servicebox">
-                <a href="">EDITAR</a>
-                <a href="">ELIMINAR</a>
-                <h2>TAXI</h2>
-                <h2>+569 5669 7984</h2>
-                <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, culpa!</h2>
-
+                <a href="/">EDITAR</a>
+                <a href="/">ELIMINAR</a>
+                <h2>{{service.categoria|upper}}</h2>
+                <h2>{{service.telefono}}</h2>
+                <h2>{{service.descripcion}}</h2>
             </div>
-
-            <div class="commentsbox">
+            {% endfor %}
+            <!-- <div class="commentsbox">
                 <h2>COMENTARIOS</h2>
                 <h3>PEDRO:</h3>
                 <h3>Lorem ipsum dolor sit amet.</h3><br>
                 <h3>JUAN:</h3>
                 <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3><br>
                 <h3>DIEGO:</h3>
-                <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus enim deleniti excepturi debitis. Necessitatibus, aliquid!</h3><br>
+                <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus enim deleniti excepturi debitis. Necessitatibus, aliquid!</h3><br> -->
 
             </div>
 

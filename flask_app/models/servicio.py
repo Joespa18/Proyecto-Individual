@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
+from flask_app.models import usuario
 
 class Servicio:
     db = 'encuentralo'
@@ -10,13 +11,38 @@ class Servicio:
         self.descripcion = data['descripcion']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-
+        self.user = None
     @classmethod
     def save(cls, data):
         query = """INSERT INTO servicios (categoria, telefono, descripcion, usuario_id) 
         VALUES (%(categoria)s, %(telefono)s, %(descripcion)s, %(usuario_id)s);"""
         return connectToMySQL(cls.db).query_db(query, data)
 
+    @classmethod
+    def get_by_category(cls , data):
+        query = """SELECT * FROM servicios
+        WHERE servicios.categoria = %(categoria)s;
+        """
+        results = connectToMySQL(cls.db).query_db(query , data)
+        servicios = []
+        for row in results:
+            servicios.append(cls(row))
+        for s in servicios:
+            query = f"SELECT * FROM servicios LEFT JOIN usuarios ON servicios.usuario_id = usuarios.id WHERE servicios.id = {s.id};"
+            results = connectToMySQL(cls.db).query_db(query)
+            for row in results:
+                data = {
+                    'id': row['usuarios.id'],
+                    'nombre': row['nombre'],
+                    'apellido_paterno': row['apellido_paterno'],
+                    'apellido_materno': row['apellido_materno'],
+                    'email': row['email'],
+                    'contraseña': row['contraseña'],
+                    'updated_at': row['usuarios.updated_at'],
+                    'created_at': row['usuarios.created_at'],
+                    }
+                s.user = usuario.Usuario(data)
+        return servicios
     # @classmethod
     # def get_all(cls):
     #     query = "SELECT * FROM bands;"
