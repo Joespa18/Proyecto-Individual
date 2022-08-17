@@ -31,6 +31,7 @@
             <h1 class="titulo">{{udp.nombre|upper}} {{udp.apellido_paterno|upper}} | </h1>
             {% endif %}
             <a href="">Enviar Mensaje</a>
+            <h1 class="titulo">{{udp.nombre|upper}} {{udp.apellido_paterno|upper}}</h1>
         </div>
 
 
@@ -44,6 +45,9 @@
                     <h2>{{service.descripcion}}</h2>
                 </div>
                 {% endfor %}
+                <h2>{{service.categoria|upper}}</h2>
+                <h2>{{service.telefono}} <a href="https://wa.me/{{service.telefono}}" target="_blank"><img src="{{ url_for('static', filename='images/wsp.png') }}" style="height:30px;"></a></h2>
+                <h2>{{service.descripcion}}</h2>
             </div>
 
             <div class="commentsbox">
@@ -55,6 +59,7 @@
                 <h3>{{evaluacion.comentario}}</h3><br>
                 {% endif %}
                 {% endfor %}
+            </div>
 
             </div>
             <div class="formbox">
