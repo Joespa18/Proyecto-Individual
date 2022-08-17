@@ -26,9 +26,14 @@
     <div id="bigcolumn">
         
         <div id="titlebox">
-            <h1 class="titulo">{{usuario.nombre|upper}} {{usuario.apellido_paterno|upper}} | 4,8 |</h1>
-            <a href="">Mis Mensaje</a>
+            {% if usuario.promediodeeval %}
+            <h1 class="titulo">{{usuario.nombre|upper}} {{usuario.apellido_paterno|upper}} | {{usuario.promediodeeval}} |</h1>
+            {% else %}
+            <h1 class="titulo">{{usuario.nombre|upper}} {{usuario.apellido_paterno|upper}} | </h1>
+            {% endif %}
+            <a href="">Enviar Mensaje</a>
         </div>
+
 
 
         <div id="BOXES-WRAP">
@@ -41,11 +46,15 @@
                 <h2>{{service.descripcion}}</h2>
             </div>
             {% endfor %}
-            <!-- <div class="commentsbox">
+            <div class="commentsbox">
                 <h2>COMENTARIOS</h2>
-                <h3>PEDRO:</h3>
-                <h3>Lorem ipsum dolor sit amet.</h3><br>
-                <h3>JUAN:</h3>
+                {% for evaluacion in usuario.evaluaciones%}
+                {% if evaluacion.comentario %}
+                <h3>{{evaluacion.sender.name|upper}}</h3>
+                <h3>{{evaluacion.comentario}}</h3><br>
+                {% endif %}
+                {% endfor %}
+                <!-- <h3>JUAN:</h3>
                 <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3><br>
                 <h3>DIEGO:</h3>
                 <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus enim deleniti excepturi debitis. Necessitatibus, aliquid!</h3><br> -->

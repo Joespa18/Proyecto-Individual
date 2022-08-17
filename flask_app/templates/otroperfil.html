@@ -25,48 +25,58 @@
     <div id="bigcolumn">
         
         <div id="titlebox">
-            <h1 class="titulo">{{udp.nombre|upper}} {{udp.apellido_paterno|upper}} | 4,8 |</h1>
+            {% if udp.promediodeeval %}
+            <h1 class="titulo">{{udp.nombre|upper}} {{udp.apellido_paterno|upper}} | {{udp.promediodeeval}} |</h1>
+            {% else %}
+            <h1 class="titulo">{{udp.nombre|upper}} {{udp.apellido_paterno|upper}} | </h1>
+            {% endif %}
             <a href="">Enviar Mensaje</a>
         </div>
 
 
         <div id="BOXES-WRAP">
-            {% for service in udp.servicios %}
             <div class="servicebox">
-                <a href="/">EDITAR</a>
-                <a href="/">ELIMINAR</a>
-                <h2>{{service.categoria|upper}}</h2>
-                <h2>{{service.telefono}}</h2>
-                <h2>{{service.descripcion}}</h2>
+                {% for service in udp.servicios %}
+                <div class="servicebox">
+
+                    <h2>{{service.categoria|upper}}</h2>
+                    <h2>{{service.telefono}}</h2>
+                    <h2>{{service.descripcion}}</h2>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
 
-            <!-- <div class="commentsbox">
+            <div class="commentsbox">
                 <h2>COMENTARIOS</h2>
-                <h3>PEDRO:</h3>
-                <h3>Lorem ipsum dolor sit amet.</h3><br>
-                <h3>JUAN:</h3>
-                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3><br>
-                <h3>DIEGO:</h3>
-                <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus enim deleniti excepturi debitis. Necessitatibus, aliquid!</h3><br>
 
-            </div> -->
+                {% for evaluacion in udp.evaluaciones%}
+                {% if evaluacion.comentario %}
+                <h3>{{evaluacion.sender.name|upper}}</h3>
+                <h3>{{evaluacion.comentario}}</h3><br>
+                {% endif %}
+                {% endfor %}
 
-            <!-- <div class="formbox">
-                <form action="">
+            </div>
+            <div class="formbox">
+                {% if not session.user_id == udp.id %}
+                {% if not session.user_id in esi %}
+                <form action="/create/evaluacion/{{udp.id}}" method="POST">
                     <label for="evaluacion">Tu evaluación:</label><br>
                     <select name="evaluacion">
+                        <option value="0">Elige del 1 al 5</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
-                        <option value="4">5</option>
+                        <option value="5">5</option>
                     </select><br>
                     <label for="comentario">Tu comentario:</label><br>
-                    <textarea rows="4" cols="50" name="comentario">Ingresa tu comentario aquí...</textarea><br>
+                    <textarea rows="4" cols="50" name="comentario" placeholder="Ingresa tu comentario aquí..."></textarea><br>
                     <input type="submit" value="Enviar Evaluación">
                 </form>
-            </div> -->
+                {% endif %}
+                {% endif %}
+            </div>
 
         </div>
 
