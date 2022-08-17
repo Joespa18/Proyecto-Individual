@@ -13,7 +13,7 @@
         <div id="logobox">
             <img src="{{ url_for('static', filename='images/lupa.png') }}" alt="">
             <h1>ENCUENTRALO.CL |</h1>
-            <h2>BIENVENIDO USUARIO.NOMBRE</h2>
+            <h2>BIENVENIDO {{usuario.nombre|upper}}</h2>
         </div>
         <div id="linksbox">
             <a href="/perfil">MI PERFIL</a>

@@ -13,7 +13,7 @@
         <div id="logobox">
             <img src="{{ url_for('static', filename='images/lupa.png') }}" alt="">
             <h1>ENCUENTRALO.CL |</h1>
-            <h2>BIENVENIDO USUARIO.NOMBRE</h2>
+            <h2>BIENVENIDO {{usuario.nombre|upper}}</h2>
         </div>
         <div id="linksbox">
             <a href="/perfil">MI PERFIL</a>
@@ -23,10 +23,7 @@
     </header>
 
     <div id="bigcolumn">
-        
-
-        <h1 class="titulo">SERVICIOS REGISTRADOS:</h1>
-
+        <h1 class="titulo">SERVICIOS DE {{categoria|upper}} REGISTRADOS:</h1>
         <table id="servicios">
             <thead>
                 <tr>
@@ -38,18 +35,14 @@
             </thead>
 
             <tbody>
+                {% for s in servicios %}
                 <tr>
-                    <td>Julián Abarzúa</td>
-                    <td>+569 5669 7999</td>
-                    <td>4,5</td>
-                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, culpa!</td>
+                    <td><a href="/perfil/{{s.user.id}}">{{s.user.nombre}} {{s.user.apellido_paterno}}</a></td>
+                    <td>{{s.telefono}}</td>
+                    <td>Valoración</td>
+                    <td>{{s.descripcion}}</td>
                 </tr>
-                <tr>
-                    <td>Julián Abarzúa</td>
-                    <td>+569 5669 7999</td>
-                    <td>4,5</td>
-                    <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae, culpa!</td>
-                </tr>
+                {% endfor %}
 
 
             </tbody>

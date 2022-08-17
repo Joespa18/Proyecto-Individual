@@ -64,7 +64,8 @@ def servicios():
     data = {
         "id": session['user_id']
     }
-    return render_template("servicios.html")
+    usuario = Usuario.get_by_id(data)
+    return render_template("servicios.html", usuario = usuario)
 
 @app.route("/perfil")
 def perfil():
@@ -74,18 +75,21 @@ def perfil():
         "id": session['user_id']
     }
     usuario = Usuario.get_by_id(data)
-    uws = Usuario.usuarios_con_servicios()
-    return render_template("miperfil.html", usuario = usuario, uws = uws)
+    return render_template("miperfil.html", usuario = usuario)
 
-@app.route("/dashboard")
-def dashboard():
+@app.route("/perfil/<int:user_id>")
+def perfil_of_x(user_id):
     if 'user_id' not in session:
         return redirect('/')
     data = {
         "id": session['user_id']
     }
-    uws = Usuario.usuarios_con_servicios()
-    return render_template("dashboard.html", uws = uws)
+    data2 = {
+        "id": user_id
+    }
+    usuario = Usuario.get_by_id(data)
+    udp = Usuario.get_by_id(data2)
+    return render_template("otroperfil.html", usuario = usuario, udp = udp)
 
 @app.route('/logout')
 def logout():
